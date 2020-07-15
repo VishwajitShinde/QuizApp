@@ -1,21 +1,38 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { RegisterComponent } from './register/register.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { QuizComponent } from './quiz/quiz.component';
-import { ResultComponent } from './result/result.component';
-import { RouterModule } from "@angular/router";
-import { appRoutes } from './routes';
-import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { DemoMaterialModule } from './material.module';
+import { MaterialModule } from './material/material.module';
+import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 
+import {HttpClientModule, HttpClient} from '@angular/common/http';
+
+// Below are Custom Modules Required for App
+import { RegisterComponent } from './components/register/register.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { QuizComponent } from './components/quiz/quiz.component';
+import { ResultComponent } from './components/result/result.component';
+
+// Localization  Requirements 
+import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+
+// AoT requires an exported function for factories
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
+
+// Custom Localizer 
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 
 @NgModule({
   declarations: [
     AppComponent,
+
     RegisterComponent,
     NavbarComponent,
     QuizComponent,
@@ -23,13 +40,23 @@ import { DemoMaterialModule } from './material.module';
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(appRoutes),
+    AppRoutingModule,
     BrowserAnimationsModule,
+    MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    DemoMaterialModule
+    HttpClientModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      },
+      defaultLanguage: 'en'
+    })
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule {  }
+export class AppModule { }
