@@ -1,0 +1,51 @@
+<app-navbar></app-navbar>
+<mat-card class="example-card">
+    <mat-card-header>
+      
+      <mat-card-title> {{  'quiz_app_registration' | translate }} </mat-card-title>
+      <mat-card-subtitle></mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <div id="example-container">
+        
+        <div>
+          <mat-form-field style="width:100%">
+            <input matInput placeholder="Enter your name" [(ngModel)]="nameTxt" required>
+            <mat-icon matSuffix>account_circle</mat-icon>
+          </mat-form-field>
+        </div>
+
+        <div class="example-container">
+          <mat-form-field style="width:100%">
+            <mat-label>Enter your phone no</mat-label>
+            <span matPrefix>+91 &nbsp;</span>
+            <input type="tel" matInput placeholder="555-555-1234"  [(ngModel)]="phoneNoTxt">
+            <mat-icon matSuffix>mode_edit</mat-icon>
+          </mat-form-field>
+        </div>
+
+        <div class="example-container">
+          <mat-form-field style="width:100%">
+            <input matInput placeholder="Enter your email" [formControl]="emailVal" [(ngModel)]="emailIdTxt" required>
+            <mat-icon matSuffix>email</mat-icon>
+            <mat-error *ngIf="emailVal.invalid">{{getEmailErrorMessage()}}</mat-error>
+          </mat-form-field>
+        </div>
+        
+        <div class="example-container">
+          <mat-form-field style="width:100%">
+            <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" [formControl]="passwordVal" [(ngModel)]="passwordTxt" required>
+            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            <!-- <mat-hint *ngIf="!passwordInput.value">Enter your password</mat-hint> -->
+            <mat-error *ngIf="passwordVal.invalid">{{getEmailErrorMessage()}}</mat-error>
+        </mat-form-field>
+        </div>
+
+      </div>
+      <button style="width:100%;" mat-raised-button type="submit" color="primary" (click)="startTest()" >Sign me up!</button>  
+   
+
+    </mat-card-content>
+    <mat-card-actions>
+    </mat-card-actions>
+  </mat-card>

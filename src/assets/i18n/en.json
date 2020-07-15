@@ -14,8 +14,13 @@
 
       "register":"register",
       "quiz":"quiz",
-      "result":"result"
-    
+      "result":"result",
+
+      "questions" : "Questions",
+      "add_questions" : "Add Questions",
+      
+      "quiz_app_site_login" : "quiz_app_site_login",
+      "quiz_app_registration" : "quiz_app_registration"
   }
 
 

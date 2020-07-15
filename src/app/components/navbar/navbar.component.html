@@ -4,21 +4,28 @@
     <div class="spacer"></div>
 
 
-    <a mat-button routerLink="home">  {{ 'home' | translate }}    </a>
+    <!-- Quiz App Menus -->
+    <a mat-button routerLink="/register">  {{ 'register' | translate }}      </a>
+    <a mat-button routerLink="/quiz">  {{ 'quiz' | translate }}              </a>
+    <a mat-button routerLink="/result">  {{ 'result' | translate }}          </a>
 
-    <a mat-button routerLink="register">  {{ 'register' | translate }}    </a>
-    <a mat-button routerLink="quiz">  {{ 'quiz' | translate }}    </a>
-    <a mat-button routerLink="result">  {{ 'result' | translate }}    </a>
-
+    <a mat-button [matMenuTriggerFor]="questions_subMenu" >  {{ 'questions' | translate }}          </a>
+    
     <!-- Menu Copied From matrimony Application Need to Udpate It -->
-  
+<!--
+    <a mat-button routerLink="home">  {{ 'home' | translate }}    </a>
     <a mat-button routerLink="search"> {{ 'search' | translate }} </a>
     <a mat-button routerLink="enroll"> {{ 'enroll' | translate }} </a>
     <a mat-button routerLink="rules"> {{ 'rules' | translate }}  </a>
     <a mat-button routerLink="aboutus"> {{ 'aboutus' | translate }} </a>
     <a mat-button routerLink="contactus"> {{ 'contactus' | translate }} </a>
-    <a mat-raised-button routerLink="signup" color="accent"> {{ 'signup' | translate }} </a>
-    <a mat-button routerLink="signin" > {{ 'signin' | translate }} </a> 
+-->
+
+    <a mat-raised-button routerLink="/signup" color="accent"> {{ 'signup' | translate }} </a>
+    <a mat-button routerLink="/signin" > {{ 'signin' | translate }} </a> 
+
+    <a >  |  </a>
+    <a >   </a>
 
     <div class="language-menu">
         <label color="white"> {{ 'SELECT' | translate }} </label>
@@ -26,4 +33,22 @@
             <option *ngFor="let lang of translate.getLangs()" [value]="lang" [selected]="lang === translate.currentLang">{{ lang }}</option>
         </select>
     </div>
-</mat-toolbar>
+</mat-toolbar> 
+
+<mat-menu #questions_subMenu="matMenu">
+    <button mat-menu-item routerLink="/add-questions"> 
+      <mat-icon>post_add</mat-icon>
+      <span>  {{ 'add_questions' | translate }} </span>
+    </button>
+    <!-- Future Sprint Menus --> 
+<!--
+    <button mat-menu-item disabled>
+      <mat-icon>voicemail</mat-icon>
+      <span>Check voice mail</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>notifications_off</mat-icon>
+      <span>Disable alerts</span>
+    </button>
+-->
+  </mat-menu>

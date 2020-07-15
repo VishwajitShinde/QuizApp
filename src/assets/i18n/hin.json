@@ -16,7 +16,13 @@
 
       "register":"रजिस्टर करें",
       "quiz":"प्रश्नोत्तरी",
-      "result":"परिणाम"
+      "result":"परिणाम",
+
+      "questions" : "प्रशन",
+      "add_questions" : "प्रश्न जोड़ें",
+
+      "quiz_app_site_login" : "quiz_app_site_login",
+      "quiz_app_registration" : "quiz_app_registration"
     
   }
   
