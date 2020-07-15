@@ -1,0 +1,52 @@
+.spacer{
+    flex: 1 1 auto;
+}
+
+
+.language-menu  {
+    max-width: 100px;
+  }
+  
+  .language-menu .mat-label {
+    font-size: 10px;
+    text-decoration-color: rgb(139, 0, 127) !important;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+    
+  .language-menu .mat-select {
+    font-size: 8px;
+    text-decoration-color: black;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+      
+  .language-menu .mat-option {
+    font-size: 12px;
+    text-decoration-color: goldenrod;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+
+
+  .language-menu label {
+    font-size: 10px;
+    text-decoration-color: rgb(139, 0, 127) !important;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+    
+  .language-menu select {
+    font-size: 8px;
+    text-decoration-color: black;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+      
+  .language-menu option {
+    font-size: 12px;
+    text-decoration-color: goldenrod;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+

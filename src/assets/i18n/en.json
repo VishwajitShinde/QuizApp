@@ -10,7 +10,11 @@
       "aboutus": "About Us",
       "contactus": "Contact Us",
       "signup": "Sign Up",
-      "signin": "Sign In"
+      "signin": "Sign In",
+
+      "register":"register",
+      "quiz":"quiz",
+      "result":"result"
     
   }
 
