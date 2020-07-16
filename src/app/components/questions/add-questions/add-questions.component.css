@@ -1,0 +1,18 @@
+.add-question-container {
+    width: 98%;
+    margin: 5px;
+    padding: 5px;
+}
+.add-question-fieldset{
+    border-color:blue;
+    border-style: solid;
+    padding: 10px;
+}
+
+.add-question .mat-form-field  {
+    width: 97%;
+}
+
+.option-settings .mat-form-field {
+    margin: 10px;
+}

@@ -1,2 +1,31 @@
-<p>add-questions works!</p>
 <app-navbar></app-navbar>
+<br />
+<div class="add-question-container">
+    <fieldset class="add-question-fieldset">
+        <legend> Add Questions To Question Bank </legend>
+        <p class="add-question">
+            <mat-form-field appearance="outline">
+                <mat-label>Add New Question Here</mat-label>
+                <input matInput placeholder="Question to add to Question Bank">
+                <mat-icon matSuffix>question_answerd</mat-icon>
+            </mat-form-field>
+        </p>
+        <p class="option-settings">
+            <mat-form-field appearance="fill">
+                <mat-label>Option Type</mat-label>
+                <mat-select>
+                    <mat-option value="{{ opt.key }}" *ngFor="let opt of optionTypes | keyvalue" >{{ opt.value }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Number Of Options</mat-label>
+                <mat-select>
+                    <mat-option value="{{ opt }}" *ngFor="let opt of [2,3,4,5,6]">{{ opt }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-checkbox >Allow Multiple Selection</mat-checkbox>
+        </p>
+    </fieldset>
+</div>
