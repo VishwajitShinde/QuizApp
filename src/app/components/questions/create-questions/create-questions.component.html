@@ -1,0 +1,72 @@
+<app-navbar></app-navbar>
+
+<mat-toolbar color="primary">
+    <span class="fill-remaining-space">Add Question</span>
+</mat-toolbar>
+  
+<form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup.value)" class="form">
+    <mat-card class="mat-elevation-z8">
+        <div class="option">
+            <mat-form-field class="form-element" appearance="outline">
+                <mat-label>Question</mat-label>
+                <textarea matInput placeholder="Type your Question here" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5" formControlName="questionText"></textarea>
+                <mat-error *ngIf="!formGroup.controls['questionText'].valid && formGroup.controls['questionText'].touched">
+                Required field, must be between 5 and 10 characters.
+                </mat-error>
+            </mat-form-field>
+        </div> 
+    </mat-card>
+    <mat-card class="mat-elevation-z8">    
+        <div class="option">
+            <mat-form-field class="form-element" appearance="outline">
+                <mat-label>Option 1</mat-label>
+                <textarea matInput placeholder="Type your Option 1 here" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5" formControlName="option1"></textarea>
+                <mat-error *ngIf="!formGroup.controls['option1'].valid && formGroup.controls['option1'].touched">
+                Required field, must be between 5 and 10 characters.
+                </mat-error>
+            </mat-form-field>
+            <mat-radio-button value="1">Answer</mat-radio-button>
+        </div>
+    </mat-card>
+    <mat-card class="mat-elevation-z8">
+        <div class="option">
+            <mat-form-field class="form-element" appearance="outline">
+                <mat-label>Option 2</mat-label>
+                <textarea matInput placeholder="Type your Option 2 here" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5" formControlName="option2"></textarea>
+                <mat-error *ngIf="!formGroup.controls['option2'].valid && formGroup.controls['option2'].touched">
+                Required field, must be between 5 and 10 characters.
+                </mat-error>
+            </mat-form-field>
+            <mat-radio-button value="2">Answer</mat-radio-button>
+        </div>
+    </mat-card>
+    <mat-card class="mat-elevation-z8">
+        <div class="option">
+            <mat-form-field class="form-element" appearance="outline">
+                <mat-label>Option 3</mat-label>
+                <textarea matInput placeholder="Type your Option 3 here" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5" formControlName="option3"></textarea>
+                <mat-error *ngIf="!formGroup.controls['option3'].valid && formGroup.controls['option3'].touched">
+                Required field, must be between 5 and 10 characters.
+                </mat-error>
+            </mat-form-field>
+            <mat-radio-button value="3">Answer</mat-radio-button>
+        </div>
+    </mat-card>
+    <mat-card class="mat-elevation-z8">
+        <div class="option">
+            <mat-form-field class="form-element" appearance="outline">
+                <mat-label>Option 4</mat-label>
+                <textarea matInput placeholder="Type your Option 4 here" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5" formControlName="option4"></textarea>
+                <mat-error *ngIf="!formGroup.controls['option4'].valid && formGroup.controls['option4'].touched">
+                Required field, must be between 5 and 10 characters.
+                </mat-error>
+            </mat-form-field>
+            <mat-radio-button value="4">Answer</mat-radio-button>
+        </div>
+    </mat-card>
+    <mat-card class="mat-elevation-z0">
+        <div class="form-element">
+            <button mat-raised-button color="primary" type="submit" class="button" [disabled]="!formGroup.valid">Submit Form</button>
+        </div>
+    </mat-card>
+</form>

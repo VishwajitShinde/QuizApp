@@ -58,20 +58,8 @@ export class QuizService {
      return this.http.post(this.serviceURL + "/api/UpdateOutput", body);
    }
  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+   addQuestion() {
+    var body = this.qns.map(x => x.QnID);
+    return this.http.post(this.serviceURL + '/api/Answers', body);
+  }
 }

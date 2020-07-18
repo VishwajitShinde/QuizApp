@@ -10,7 +10,8 @@ import { AuthGuard } from './auth/auth.guard';
 import { SigninComponent } from './components/basic/signin/signin.component';
 import { SignupComponent } from './components/basic/signup/signup.component';
 
-import { AddQuestionsComponent } from './components/questions/add-questions/add-questions.component';
+//import { AddQuestionsComponent } from './components/questions/add-questions/add-questions.component';
+import { CreateQuestionsComponent } from "./components/questions/create-questions/create-questions.component";
 
 
 const routes: Routes = [
@@ -22,7 +23,9 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent,  canActivate : [AuthGuard] },
   { path: 'signin', component: SigninComponent,  canActivate : [AuthGuard] },
 
-  { path: 'add-questions', component: AddQuestionsComponent,  canActivate : [AuthGuard] },
+  //{ path: 'add-questions', component: AddQuestionsComponent,  canActivate : [AuthGuard] },
+  
+  { path: 'add-questions', component: CreateQuestionsComponent,  canActivate : [AuthGuard] },
 ]; 
 
 @NgModule({

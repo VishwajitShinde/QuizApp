@@ -18,9 +18,10 @@ import { ResultComponent } from './components/result/result.component';
 // Localization  Requirements 
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
-import { AddQuestionsComponent } from './components/questions/add-questions/add-questions.component';
+// import { AddQuestionsComponent } from './components/questions/add-questions/add-questions.component';
 import { SigninComponent } from './components/basic/signin/signin.component';
 import { SignupComponent } from './components/basic/signup/signup.component';
+import { CreateQuestionsComponent } from './components/questions/create-questions/create-questions.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -40,9 +41,10 @@ export function createTranslateLoader(http: HttpClient) {
     NavbarComponent,
     QuizComponent,
     ResultComponent,
-    AddQuestionsComponent,
+    //AddQuestionsComponent,
     SigninComponent,
-    SignupComponent
+    SignupComponent,
+    CreateQuestionsComponent
   ],
   imports: [
     BrowserModule,
