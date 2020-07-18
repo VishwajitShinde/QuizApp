@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { Question } from '../question'
 import { OptionType } from "../option-type"
 import { Option } from '../option';
-import { TimeUnit } from "../time-unit"
+import { TimeUnitValue } from "../time-unit-value"
 
 @Component({
   selector: 'app-add-questions',
@@ -17,7 +17,7 @@ export class AddQuestionsComponent {
   public optionsArray: Object[];
   public hideMultipleOptionCheck:boolean=false;
   public answersObj: Object;
-  public timeUnit:TimeUnit;
+  public timeUnitValue = TimeUnitValue;
 
   constructor() {
     this.optionsArray = [];
@@ -77,20 +77,41 @@ export class AddQuestionsComponent {
   }
 
   /**
-   * markOptionAsAnswer
+   * 
    */
-  markOptionAsAnswer(checkboxEvent :any, option:Option) {
-    console.log("Option is marked for Answer ", option);
-    if ( this.answersObj.hasOwnProperty('num') ) {
-      if ( checkboxEvent.target.checked == false ) {
-        delete this.answersObj[option.num]
-      } 
+  clearSelectedAnswerOption()
+  {
+    console.log("Before Clearing Answers : ", this.answersObj );
+    this.answersObj = {};
+  }
+
+  /**
+   * 
+   * @param boxOrRadioEvent 
+   * @param option 
+   * @param isRadio 
+   */
+  markOptionAsAnswer(boxOrRadioEvent :any, option:Option, isRadio:boolean) {
+    console.log("isRadio Button : ", isRadio )
+    console.log("Option is marked for Answer ", option, boxOrRadioEvent); 
+    if( isRadio ) {
+      //boxOrRadioEvent.value;
+      this.answersObj = {};
+      this.answersObj[ option.num ] = option; 
     } else {
-      if ( checkboxEvent.target.checked == true ) {
-        this.answersObj[ option.num ] = option; 
-      } 
-    }
-    console.log( "Answers ", this.answersObj);
+      var isChecked:boolean =  boxOrRadioEvent.checked;
+      if ( this.answersObj.hasOwnProperty('num') ) {
+        if ( !isChecked) {
+          delete this.answersObj[option.num]
+        } 
+      } else {
+        if ( isChecked ) {
+          this.answersObj[ option.num ] = option; 
+        } 
+      }
+    } 
+
+    console.log( "Answers ", this.answersObj );
   }
 
   /**
@@ -98,9 +119,9 @@ export class AddQuestionsComponent {
    */
 
   addOrUpdateQuestionToQuestionBank() {
-    Object.keys(this.answersObj).forEach(function(key) {
+    for (let key in this.answersObj) {
       this.question.answers.push(this.answersObj[key]);
-  });
+    }
     console.log("Submit Action clicked ", this.question);
     this.question=new Question();
   }

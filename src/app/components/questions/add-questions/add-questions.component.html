@@ -28,47 +28,56 @@
                 <mat-form-field appearance="fill">
                     <mat-label>Number Of Options</mat-label>
                     <mat-select [(value)]="question.optionCount" (selectionChange)="optionNumberChange()">
-                        <mat-option value="{{ opt.number }}" [(disabled)]="opt.disabled" *ngFor="let opt of optionsArray">{{ opt.number }}</mat-option>
+                        <mat-option value="{{ opt.number }}" [(disabled)]="opt.disabled"
+                            *ngFor="let opt of optionsArray">{{ opt.number }}</mat-option>
                     </mat-select>
                 </mat-form-field>
                 <p class="option-settings-multipleSelection">
-                    <mat-checkbox [(ngModel)]="question.hasMultipleAns" [(disabled)]="hideMultipleOptionCheck">Allow Multiple Selection</mat-checkbox>
+                    <mat-checkbox [(ngModel)]="question.hasMultipleAns" [(disabled)]="hideMultipleOptionCheck" (change)="clearSelectedAnswerOption()">
+                        Allow Multiple Selection
+                    </mat-checkbox>
                 </p>
             </div>
 
             <!-- Answers Settings-->
             <!-- Answer Panel and Submit Button-->
             <div class="answer-settings">
-                <p>
-                    <mat-label [style.display]="question.hasMultipleAns ? 'display' : 'none'"> Mark All Correct Answers
-                    </mat-label>
-                    <section class="answer-settings-section" [style.display]="question.hasMultipleAns ? 'display' : 'none'">
-                        <mat-checkbox (select)="markOptionAsAnswer(event, option)" *ngFor="let option of question.options">
-                            Option {{ option.num }} </mat-checkbox>
+                <section >
+                   
+                    <section *ngIf="(question.hasMultipleAns) && (question.options.length > 0)">
+                        <mat-label> Mark All Correct Answers : </mat-label>
+                        <mat-checkbox (change)="markOptionAsAnswer($event, option, false)" *ngFor="let option of question.options">
+                            Option {{ option.num }} 
+                        </mat-checkbox>
                     </section>
-                    <mat-radio-group aria-label="Mark Correct Answer" [style.display]="question.hasMultipleAns ? 'none' : 'display'">
-                        <mat-radio-button (select)="markOptionAsAnswer(event, option)" *ngFor="let option of question.options"> Option {{ option.num }}
+
+                    <mat-radio-group  *ngIf="(!question.hasMultipleAns) && (question.options.length > 0) " >
+                        <mat-label> Mark Correct Answer : </mat-label>
+                        <mat-radio-button value="{{ option.num }}" (change)="markOptionAsAnswer($event, option, true)"
+                            *ngFor="let option of question.options"> Option {{ option.num }}
                         </mat-radio-button>
                     </mat-radio-group>
-   
 
+                </section>
                 <p>
-                    <mat-form-field appearance="fill">
+                   
+                    <mat-form-field apearance="fill">
                         <mat-label>Select Time Unit</mat-label>
-                        <mat-select [(value)]="question.timeUnit">
-                            <mat-option value="{{ opt.key }}" *ngFor="let opt of timeUnit | keyvalue ">{{ opt.key }}
+                        <mat-select [(value)]="question.timeUnitValue"  >
+                            <mat-option value="{{ timeValue.value }}" *ngFor="let timeValue of timeUnitValue | keyvalue" >
+                                {{ timeValue.key }}
                             </mat-option>
                         </mat-select>
-                        <button class="submit-question-btn-grad" mat-raised-button type="submit" (click)="addOrUpdateQuestionToQuestionBank()"> Submit Question </button>
                     </mat-form-field>
 
                     <mat-form-field appearance="outline">
                         <mat-label>Expected Time To Answer</mat-label>
-                        <input matInput placeholder="Question to add to Question Bank" [(ngModel)]="question.expectedTimeToAnswer">
+                        <input matInput placeholder="Expected Time To Answer Question"
+                            [(ngModel)]="question.expectedTimeToAnswer">
                         <mat-icon matSuffix>watch_later</mat-icon>
                     </mat-form-field>
-                </p>
 
+                </p>
             </div>
 
 
@@ -76,10 +85,16 @@
             <div class="add-options">
                 <mat-form-field appearance="outline" *ngFor="let option of question.options">
                     <mat-label>Add Option {{ option.num }} For Question</mat-label>
-                    <textarea matInput placeholder="Option {{ option.num }} value here" [(ngModel)]="option.value"></textarea>
+                    <textarea matInput placeholder="Option {{ option.num }} value here"
+                        [(ngModel)]="option.value"></textarea>
                     <mat-icon>receipt</mat-icon>
                 </mat-form-field>
             </div>
         </div>
+
+        <p class="submit-button-paragraph">       
+        <button class="submit-question-btn-grad" mat-raised-button type="submit"
+        (click)="addOrUpdateQuestionToQuestionBank()"> Submit Question </button>
+        </p>
     </fieldset>
 </div>

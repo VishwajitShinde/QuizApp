@@ -1,6 +1,6 @@
 import { OptionType } from "./option-type"
 import { Option } from "./option"
-import { TimeUnit } from "./time-unit"
+import { TimeUnitValue } from "./time-unit-value"
 
 export class Question {
 
@@ -16,7 +16,7 @@ export class Question {
     public answers: Option[];
     public hasMultipleAns:boolean=false;
     public expectedTimeToAnswer:number=60;
-    public timeUnit:TimeUnit=TimeUnit.SECONDS;
+    public timeUnitValue:TimeUnitValue=TimeUnitValue.SECONDS;
 
     constructor() { 
         this.options = [];

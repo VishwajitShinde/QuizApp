@@ -32,16 +32,10 @@
     border-style: solid;
 }
 
-.answer-settings-section {
-    display: flex;
-    align-content: center;
-    align-items: center;
-    height: 60px;
-}
+.answer-settings .mat-form-field {
+    margin: 10px;
+    padding: 10px;
 
-.submit-question {
-    border: yellow;
-    border-style: solid;
 }
 
 .submit-question-btn-grad {
@@ -58,7 +52,7 @@
 }
 
 .add-options {
-    margin-top: 160px;
+    margin-top: 170px;
     padding: 10px;
     border-color: black;
     border-style: solid;
@@ -77,4 +71,9 @@
 
 .mat-radio-button~.mat-radio-button {
     margin-left: 16px;
+}
+
+.submit-button-paragraph {
+    float: right;
+    margin: 20px;
 }
