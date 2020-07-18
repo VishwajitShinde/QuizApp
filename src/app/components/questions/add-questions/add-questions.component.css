@@ -1,18 +1,80 @@
 .add-question-container {
     width: 98%;
-    margin: 5px;
+    margin: 10px;
     padding: 5px;
 }
-.add-question-fieldset{
-    border-color:blue;
+
+.add-question-fieldset {
+    border-color: blue;
     border-style: solid;
     padding: 10px;
 }
 
-.add-question .mat-form-field  {
+.add-question .mat-form-field {
     width: 97%;
+}
+
+.option-settings {
+    float: left;
+    width: 47%;
+    border-color: red;
+    border-style: solid;
 }
 
 .option-settings .mat-form-field {
     margin: 10px;
+}
+
+.answer-settings {
+    float: right;
+    width: 47%;
+    border-color: green;
+    border-style: solid;
+}
+
+.answer-settings-section {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    height: 60px;
+}
+
+.submit-question {
+    border: yellow;
+    border-style: solid;
+}
+
+.submit-question-btn-grad {
+    background-image: linear-gradient(to right, #c2e59c 0%, #64b3f4 51%, #c2e59c 100%)
+}
+
+.submit-question-btn-grad:hover {
+    background-position: right center;
+}
+
+.option-answer-submit-config-main {
+    width: 98%;
+    padding: 10px;
+}
+
+.add-options {
+    margin-top: 160px;
+    padding: 10px;
+    border-color: black;
+    border-style: solid;
+}
+
+.add-options .mat-form-field {
+    margin: 10px;
+    padding: 5px;
+    width: 40%;
+}
+
+.option-settings-multipleSelection {
+    margin: 10px;
+    float: center;
+}
+
+.mat-radio-button~.mat-radio-button {
+    margin-left: 16px;
 }
