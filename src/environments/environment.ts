@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  quizServiceURL: "http://localhost:8081/quiz-service"
+  quizServiceURL: "http://localhost:9191"
 };
 
 /*

@@ -42,6 +42,10 @@ export class QuizService {
      return this.http.post(this.serviceURL + '/api/registerParticipant', body);
    }
  
+   addQuestion(question) {
+    return this.http.post(this.serviceURL + '/api/addQuestion', question);
+  }
+
    getQuestions() {
      return this.http.get(this.serviceURL + '/api/questions');
    }
@@ -57,9 +61,4 @@ export class QuizService {
      body.TimeSpent = this.seconds;
      return this.http.post(this.serviceURL + "/api/UpdateOutput", body);
    }
- 
-   addQuestion() {
-    var body = this.qns.map(x => x.QnID);
-    return this.http.post(this.serviceURL + '/api/Answers', body);
-  }
 }
