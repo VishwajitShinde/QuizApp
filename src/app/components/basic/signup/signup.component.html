@@ -1,5 +1,7 @@
 <app-navbar></app-navbar>
-<mat-card class="example-card">
+
+<form #signupForm="ngForm" [formGroup]="formGroup" (ngSubmit)="onSubmit(signupForm)" class="form">
+<mat-card class="example-card" >
     <mat-card-header>
       
       <mat-card-title> {{  'quiz_app_registration' | translate }} </mat-card-title>
@@ -10,42 +12,61 @@
         
         <div>
           <mat-form-field style="width:100%">
-            <input matInput placeholder="Enter your name" [(ngModel)]="nameTxt" required>
+            <input matInput placeholder="Enter your name" [(ngModel)]="signup.firstName" formControlName="firstName" required>
             <mat-icon matSuffix>account_circle</mat-icon>
           </mat-form-field>
         </div>
 
         <div class="example-container">
           <mat-form-field style="width:100%">
-            <mat-label>Enter your phone no</mat-label>
+            <mat-label>Enter your mobile no</mat-label>
             <span matPrefix>+91 &nbsp;</span>
-            <input type="tel" matInput placeholder="555-555-1234"  [(ngModel)]="phoneNoTxt">
+            <input type="tel" matInput placeholder="555-555-1234"  [(ngModel)]="signup.mobile" formControlName="mobile">
             <mat-icon matSuffix>mode_edit</mat-icon>
           </mat-form-field>
         </div>
 
         <div class="example-container">
           <mat-form-field style="width:100%">
-            <input matInput placeholder="Enter your email" [formControl]="emailVal" [(ngModel)]="emailIdTxt" required>
+            <input matInput placeholder="Enter your email" formControlName="email" [(ngModel)]="signup.email" required>
             <mat-icon matSuffix>email</mat-icon>
-            <mat-error *ngIf="emailVal.invalid">{{getEmailErrorMessage()}}</mat-error>
+            <!-- <mat-error *ngIf="email.invalid">{{getEmailErrorMessage()}}</mat-error> -->
           </mat-form-field>
         </div>
         
         <div class="example-container">
           <mat-form-field style="width:100%">
-            <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" [formControl]="passwordVal" [(ngModel)]="passwordTxt" required>
+            <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" formControlName="password" [(ngModel)]="signup.password" required>
             <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             <!-- <mat-hint *ngIf="!passwordInput.value">Enter your password</mat-hint> -->
-            <mat-error *ngIf="passwordVal.invalid">{{getEmailErrorMessage()}}</mat-error>
+            <!-- <mat-error *ngIf="passwordVal.invalid">{{getEmailErrorMessage()}}</mat-error> -->
         </mat-form-field>
         </div>
+        <div class="example-container">
+          <!-- <mat-selection-list #userTypes [multiple]="false">
+              <mat-list-option *ngFor="let userType of typesOfUser" [value]="userType">
+                  {{userType}}
+              </mat-list-option>
+          </mat-selection-list> -->
+          <!-- <mat-chip-list aria-label="User Type selection" class="mar-bottom">
+            <mat-chip *ngFor="let userType of typesOfUser" [value]="userType">{{userType}}</mat-chip>
+          </mat-chip-list> -->
 
+          <!-- https://codepen.io/gkhncnr207/pen/QmWpXV?__cf_chl_jschl_tk__=2d0072a1aed032875f86fcdf0d681f1563bfb499-1595879014-0-AXFx0pGgKbTZC30fdAPA6OzsuSkFL7c28Ps4SbLFZmtotEdUC_r2jrt_dEcAbBnPPllFAdC1stRSgNqeS1mglGT6J9rlKDcnZ3T-7RX-KltUDZyB-0Ek3TrXzDcO51mjvwz21Ve7M4IrPzCtM5R6INNeUDAgmy29cxh9rwy8FPVRVUK80YZB5yhWkvZ4WKM062IwRPevgLS7_sAKAPCtTOz4aHSeY4NYlCynF4sRKXu1czcSlTgDf2uQsq66PcD_M1NCuI5nF_Myg-wqfe1rsraxz0XQmEMyEyTHun7R4BPwUXOhjBYX6Vwv7jDgZgohkLMy_FVqaGbS_m5qOwwWascNIxrsWRAhX7FhcV7iyVS0 -->
+          <div class="userType">
+            <div class="selection" *ngFor="let userType of typesOfUser" [value]="userType.name">
+              <input id="{{userType.name}}" name="userTypeRole" type="radio" formControlName="userTypeRole" [value]="userType.name" [(ngModel)]="signup.role">
+              <label for="{{userType.name}}">{{userType.value}}</label>
+            </div>
+          </div>
+          
+        </div>
       </div>
-      <button style="width:100%;" mat-raised-button type="submit" color="primary" (click)="startTest()" >Sign me up!</button>  
+      <button class="submit-but" mat-raised-button type="submit" color="primary" (click)="startTest()" >Sign me up!</button>  
    
 
     </mat-card-content>
     <mat-card-actions>
     </mat-card-actions>
   </mat-card>
+</form>

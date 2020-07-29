@@ -23,7 +23,6 @@ export class CreateQuestionsComponent implements OnInit {
 
   ngOnInit(): void {
     this.createForm();
-    //this.setChangeValidate();
   }
 
   createForm() {
@@ -38,20 +37,6 @@ export class CreateQuestionsComponent implements OnInit {
       'validate': ''
     });
   }
-
-  // setChangeValidate() {
-  //   this.formGroup.get('validate').valueChanges.subscribe(
-  //     (validate) => {
-  //       if (validate == '1') {
-  //         this.formGroup.get('name').setValidators([Validators.required, Validators.minLength(3)]);
-  //         this.titleAlert = "You need to specify at least 3 characters";
-  //       } else {
-  //         this.formGroup.get('name').setValidators(Validators.required);
-  //       }
-  //       this.formGroup.get('name').updateValueAndValidity();
-  //     }
-  //   )
-  // }
 
   onSubmit(form: NgForm) {
     

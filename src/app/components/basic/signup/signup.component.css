@@ -7,3 +7,56 @@
     margin-left: 8px;
   }
   
+  .submit-but{
+    width:100%;margin-top: 10px;
+  }
+
+
+  .userType .selection {
+    margin-bottom: 10px;
+    margin-right: 10px;
+    display: inline;
+  }
+  
+  .userType .selection label {
+    display: inline-block;
+    width:7em;
+    background-color: #42b4d6;
+    line-height: 30px;
+    border-radius: 25px;
+    text-align: center;
+    color: #ffffff;
+    padding: 0.5em;
+    cursor: pointer;
+  }
+  
+  .userType .selection label:hover {
+    background-color: #5fc0dc;
+  }
+  
+  .userType .selection input[type=radio] {
+    display: none;
+  }
+  
+  .userType .selection input[type=radio]:checked ~ label {
+    background-color: #f1592a;
+  }
+
+  /* .chip {
+    display: inline-block;
+    padding: 0 25px;
+    height: 50px;
+    font-size: 16px;
+    line-height: 50px;
+    border-radius: 25px;
+    background-color: #f1f1f1;
+  }
+  
+  .chip img {
+    float: left;
+    margin: 0 10px 0 -25px;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+  }
+   */

@@ -41,6 +41,10 @@ export class QuizService {
      }
      return this.http.post(this.serviceURL + '/api/registerParticipant', body);
    }
+   
+   signupUser(signup){
+    return this.http.post(this.serviceURL + '/api/auth/signup', signup);
+   }
  
    addQuestion(question) {
     return this.http.post(this.serviceURL + '/api/addQuestion', question);

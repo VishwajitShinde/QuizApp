@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
-import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormControl, FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
 import {TranslateService} from '@ngx-translate/core';
+import { Signup } from '../../../model/Signup';
+import { QuizService } from '../../../services/quiz.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -15,11 +19,18 @@ export class SignupComponent implements OnInit {
   phoneNoTxt: string;
   passwordTxt: string;
   hide = true;
+  signup: Signup = new Signup();
 
+  formGroup: FormGroup;
   
   public translate: TranslateService;
 
-  constructor(translate: TranslateService) {
+  typesOfUser: Role[] = [{"name": "ROLE_STUDENT", "value": "I'm a Student"}, 
+                            {"name": "ROLE_TEACHER", "value": "I'm a Teacher"}, 
+                            {"name": "ROLE_PARENT", "value": "I'm a Parent"}];
+
+  constructor(private formBuilder: FormBuilder, translate: TranslateService, private quizService : QuizService,  private route : Router, 
+    private _snackBar: MatSnackBar) {
     this.translate = translate;
 
     translate.addLangs(['en', 'mar', 'hin']);
@@ -32,6 +43,7 @@ export class SignupComponent implements OnInit {
 }
 
   ngOnInit(): void {
+    this.createForm();
   }
 
   nameVal = new FormControl('', [Validators.required, Validators.min(3) ]);
@@ -59,4 +71,45 @@ export class SignupComponent implements OnInit {
     console.log(this.nameTxt, this.emailIdTxt);
   }
 
+  createForm() {
+    //let emailregex: RegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    this.formGroup = this.formBuilder.group({
+      'firstName': [null, [Validators.required, Validators.minLength(5), Validators.maxLength(40)]],
+      'lastName': [null, [Validators.required, Validators.minLength(1), Validators.maxLength(40)]],
+      'email': [null, [Validators.required, Validators.email]],
+      'mobile': [null, [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
+      'password': [null, [Validators.required, Validators.minLength(6), Validators.maxLength(16)]],
+      'userTypeRole': [null],
+      
+      'validate': ''
+    });
+  }
+
+  onSubmit(form: NgForm) {
+    
+    var roleArr = [];
+    roleArr.push(this.signup.role);
+    console.log(this.signup.role);
+    this.signup.role = roleArr;
+    console.log(this.signup);
+
+
+    this.quizService.signupUser(this.signup).subscribe(
+      (data: any) => {
+        // localStorage.clear();
+        this._snackBar.open("You have signed up successfully!", "Sign in", {
+          duration: 5000,
+        });
+        console.log("here");
+        console.log(form);
+        form.resetForm();
+        this.route.navigate(['add-questions'])
+      }
+    );
+  }
+}
+
+interface Role{
+  name: string;
+  value: string;
 }

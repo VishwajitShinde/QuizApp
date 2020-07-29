@@ -16,7 +16,7 @@ export class RegisterComponent implements OnInit {
   valid: boolean;
 
   constructor( private quizService : QuizService,private route : Router) { }
-
+  
   ngOnInit(): void {
   }
 
