@@ -10,14 +10,14 @@
         
         <div>
           <mat-form-field style="width:100%">
-            <input matInput placeholder="Enter email Or phone " [formControl]="emailOrPhoneValidation"  [(ngModel)]="emailOrPhoneTxt" required>
+            <input matInput placeholder="Enter email Or phone " [formControl]="emailOrPhoneValidation"  [(ngModel)]="signin.emailOrMobile" required>
             <mat-icon matSuffix>account_circle</mat-icon>
           </mat-form-field>
         </div>
         
         <div class="example-container">
           <mat-form-field style="width:100%">
-            <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" [formControl]="passwordValidation" [(ngModel)]="passwordTxt" required>
+            <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" [formControl]="passwordValidation" [(ngModel)]="signin.password" required>
             <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </mat-form-field>
         </div>

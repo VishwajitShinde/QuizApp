@@ -1,7 +1,7 @@
 export class Signup{
   
     firstName: string;
-    lastName: string = "dummy";
+    lastName: string;
     mobile: string;
     email: string;
     password: string;

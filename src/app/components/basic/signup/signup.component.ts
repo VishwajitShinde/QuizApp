@@ -48,7 +48,7 @@ export class SignupComponent implements OnInit {
 
   nameVal = new FormControl('', [Validators.required, Validators.min(3) ]);
   emailVal = new FormControl('', [Validators.required, Validators.email]);
-  passwordVal = new FormControl('', [Validators.required, Validators.min(3) ]);
+  passwordVal = new FormControl('', [Validators.required, Validators.pattern('(^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,20}$)') ]);
 
 
   getEmailErrorMessage() {
@@ -64,7 +64,7 @@ export class SignupComponent implements OnInit {
       return 'You must enter a value';
     }
 
-    return this.passwordVal.hasError('password') ? 'Not a valid password' : '';
+    return this.passwordVal.hasError('password') ? 'Not a valid password [must contain UpperCase, Lowercase, Special Char (?!.*) and length ( 8 to 20 )]' : '';
   }  
 
   startTest(){
@@ -77,8 +77,8 @@ export class SignupComponent implements OnInit {
       'firstName': [null, [Validators.required, Validators.minLength(5), Validators.maxLength(40)]],
       'lastName': [null, [Validators.required, Validators.minLength(1), Validators.maxLength(40)]],
       'email': [null, [Validators.required, Validators.email]],
-      'mobile': [null, [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
-      'password': [null, [Validators.required, Validators.minLength(6), Validators.maxLength(16)]],
+      'mobile': [null, [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern('(^$|[0-9]{10})')]],
+      'password': [null, [Validators.required,  Validators.pattern('(^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,20}$)') ]],
       'userTypeRole': [null],
       
       'validate': ''
@@ -101,6 +101,7 @@ export class SignupComponent implements OnInit {
           duration: 5000,
         });
         console.log("here");
+        this.signup = new Signup(); // resseting truly
         console.log(form);
         form.resetForm();
         this.route.navigate(['add-questions'])

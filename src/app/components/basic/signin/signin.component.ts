@@ -1,24 +1,32 @@
 import { Component, OnInit } from '@angular/core';
 
 import { FormControl, Validators } from '@angular/forms';
-import {TranslateService} from '@ngx-translate/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
+import {TranslateService} from '@ngx-translate/core';
+import { QuizService } from 'src/app/services/quiz.service';
+
+import { SignIn } from 'src/app/model/signin'
+ 
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.component.html',
   styleUrls: ['./signin.component.css']
 })
-export class SigninComponent implements OnInit {
+export class SigninComponent implements OnInit { 
+  signin:SignIn;
 
-  emailOrPhoneTxt: string;
-  passwordTxt: string;
   isValid: boolean;
   hasError: boolean = false;
   hide:boolean = true;
 
+  quizService:QuizService;
+
   public translate: TranslateService;
 
-  constructor(translate: TranslateService) {
+  constructor(translate: TranslateService, quizService: QuizService, private route : Router,  private _snackBar: MatSnackBar) {
+    this.signin = new SignIn();
     this.translate = translate;
 
     translate.addLangs(['en', 'mar', 'hin']);
@@ -28,14 +36,17 @@ export class SigninComponent implements OnInit {
 
      // the lang to use, if the lang isn't available, it will use the current loader to get them
     translate.use('en');
+    this.quizService = quizService;
 }
 
   ngOnInit(): void {
   }
-
   
   emailOrPhoneValidation = new FormControl('', [Validators.required, Validators.min(3) ]);
-  passwordValidation = new FormControl('', [Validators.required, Validators.min(3) ]);
+  passwordValidation = new FormControl('', [
+      Validators.required,
+      Validators.pattern('(^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,20}$)')
+     ] );
 
  getPasswordErrorMessage() { 
     if (this.passwordValidation.hasError('required')) {
@@ -59,15 +70,15 @@ export class SigninComponent implements OnInit {
  }
 
   authenticate() {
-
-    console.log(this.emailOrPhoneTxt, this.passwordTxt);
-    if ( this.emailOrPhoneTxt === this.passwordTxt ) { 
-        this.isValid = true; 
-        this.hasError = false;
-    } else {
-      this.isValid = false ;
-      this.hasError = true;
-    }
+    console.log(this.signin); 
+   this.quizService.signInUser( this.signin ).subscribe(
+    (data: any) => {
+      this._snackBar.open("You have signed in successfully!", "Sign in", {
+        duration: 5000,
+      });
+      console.log("response Data : ",  data );
+      this.route.navigate(['add-questions'])
+    } );
   }
 
 }
