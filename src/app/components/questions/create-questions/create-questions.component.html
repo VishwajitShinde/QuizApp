@@ -27,7 +27,7 @@
                 Required field, must be between 5 and 10 characters.
                 </mat-error>
             </mat-form-field>
-            <mat-radio-button value="1">Answer</mat-radio-button>
+            <mat-radio-button value="1"  (change)="markOptionAsAnswer($event, 1)">Answer</mat-radio-button>
         </div>
     <!-- </mat-card> -->
     <!-- <mat-card class="mat-elevation-z8">     -->
@@ -39,7 +39,7 @@
                 Required field, must be between 5 and 10 characters.
                 </mat-error>
             </mat-form-field>
-            <mat-radio-button value="2" >Answer</mat-radio-button>
+            <mat-radio-button value="2" (change)="markOptionAsAnswer($event, 2)" >Answer</mat-radio-button>
         </div>
     <!-- </mat-card> -->
     <!-- <mat-card class="mat-elevation-z8">     -->
@@ -51,7 +51,7 @@
                 Required field, must be between 5 and 10 characters.
                 </mat-error>
             </mat-form-field>
-            <mat-radio-button value="3">Answer</mat-radio-button>
+            <mat-radio-button value="3" (change)="markOptionAsAnswer($event, 3)" >Answer</mat-radio-button>
         </div>
     <!-- </mat-card> -->
     <!-- <mat-card class="mat-elevation-z8">     -->
@@ -63,7 +63,7 @@
                 Required field, must be between 5 and 10 characters.
                 </mat-error>
             </mat-form-field>
-            <mat-radio-button value="4">Answer</mat-radio-button>
+            <mat-radio-button value="4" (change)="markOptionAsAnswer($event, 4)" >Answer</mat-radio-button>
         </div>
 
         <!-- <mat-radio-group  [(ngModel)]="question.answer" style="margin-bottom: 15px;"> Answer

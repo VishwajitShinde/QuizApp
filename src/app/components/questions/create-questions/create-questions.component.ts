@@ -33,7 +33,7 @@ export class CreateQuestionsComponent implements OnInit {
       'option2': [null, [Validators.required, Validators.minLength(1), Validators.maxLength(100)]],
       'option3': [null, [Validators.required, Validators.minLength(1), Validators.maxLength(100)]],
       'option4': [null, [Validators.required, Validators.minLength(1), Validators.maxLength(100)]],
-      
+      'answer' : [null],
       'validate': ''
     });
   }
@@ -55,4 +55,19 @@ export class CreateQuestionsComponent implements OnInit {
       }
     );
   }
+
+/**
+   * 
+   * @param boxOrRadioEvent 
+   * @param option 
+   * @param isRadio 
+   */
+  markOptionAsAnswer(boxOrRadioEvent :any, option:any ) {
+    console.log("Option is marked for Answer ", option, boxOrRadioEvent); 
+    this.question.answer=option;
+  }
+
+
+
+
 }

@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 
-import {HttpClientModule, HttpClient} from '@angular/common/http';
+import {HttpClientModule, HttpClient, HttpHandler} from '@angular/common/http';
 
 // Below are Custom Modules Required for App
 import { RegisterComponent } from './components/register/register.component';
@@ -22,6 +22,14 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { SigninComponent } from './components/basic/signin/signin.component';
 import { SignupComponent } from './components/basic/signup/signup.component';
 import { CreateQuestionsComponent } from './components/questions/create-questions/create-questions.component';
+
+/*
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthService } from './auth/auth.service';
+import { TokenInterceptor } from './auth/token.interceptor';
+import { JwtInterceptor } from './auth/jwt.interceptor';
+
+*/
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -65,7 +73,22 @@ export function createTranslateLoader(http: HttpClient) {
     
   ],
   exports: [AppRoutingModule],
-  providers: [],
+  providers: [ 
+    /*
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true,
+      deps: [AuthService,HttpClient]
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true,
+      deps: [AuthService,HttpClient]
+    }
+    */
+   ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
